@@ -3,25 +3,31 @@ import { connect } from "react-redux";
 import SmurfDisplay from "./SmurfDisplay";
 import { getSmurfs } from "../actions";
 
-const Smurf = props => {
-    useEffect(() => {
-        props.getSmurfs();
-    }, [props]);
+const Smurf = ({getSmurfs, isFetching, smurfData = [], error}) => {
 
-    if (props.isFetching) {
+    useEffect(() => {
+        getSmurfs();
+    }, []);
+
+    if (isFetching) {
         return <h3>Loading...</h3>;
     }
+    
     return (
-        <div>
-            {props.error && (<div>Smurfs!!</div>)}
-            {props.smurfData && props.smurfData.map(info => (
-                <SmurfDisplay key={info.id} info={info} />
-            ))}
+        <div className= "smurfDisplay">
+            
+            <h1>Smurfs</h1>
+            {smurfData && smurfData.map(info =>{
+                    console.log(info)
+                return (<SmurfDisplay key={info.id} info={info}> </SmurfDisplay >)
+            }
+            )}
         </div>
     );
 };
 
 const mapStateToProps = state => {
+    //console.log(state.smurfData)
     return {
         smurfData: state.smurfData,
         isFetching: state.isFetching,

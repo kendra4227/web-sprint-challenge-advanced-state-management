@@ -36,6 +36,16 @@ section {
   padding:0;
 }
 
+.smurfDisplay {
+  background-color: aliceblue;
+  justify-content: space-evenly;
+  margin: 20px;
+  padding: 50px;
+}
+.smurfs{
+  font-size: 20px;
+}
+
 
 
 @media (max-width: 800px) {

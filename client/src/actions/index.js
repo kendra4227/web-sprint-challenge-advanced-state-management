@@ -5,6 +5,7 @@ export const ADD_SMURF_SUCCESS = 'ADD_SMURF_SUCCESS';
 export const SMURF_DATA_FAILURE = 'SMURF_DATA_FAILURE';
 export const ADD_SMURF = 'ADD_SMURF';
 
+
 export const getSmurfs = () =>(dispatch) =>{
     dispatch({type:FETCH_SMURF_DATA});
 
@@ -14,13 +15,13 @@ export const getSmurfs = () =>(dispatch) =>{
     .then((res) => {
         console.log(res);
 
-        dispatch({type: ADD_SMURF_SUCCESS, payload: res})
+        dispatch({type: ADD_SMURF_SUCCESS, payload: res.data}) // Fetch res.data (object)
     })
 
     .catch((err) => {
-        console.log(err);
+    console.log('MUST DISPLAY ',err);
         
-        dispatch( {type: SMURF_DATA_FAILURE, payload: err})
+        dispatch( {type: SMURF_DATA_FAILURE,  err})
  })
  
 }
@@ -33,8 +34,8 @@ export const getSmurfs = () =>(dispatch) =>{
             .then(response =>
                 dispatch({ type:ADD_SMURF_SUCCESS , payload: response.data })
             )
-            .catch(error =>
-                dispatch({ type: SMURF_DATA_FAILURE, payload: error.response })
+            .catch(err =>
+                dispatch({ type: SMURF_DATA_FAILURE, err })
             );
     };
  }

@@ -1,21 +1,32 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {addNewSmurf} from '../actions'
+
+
+
 const AddForm = props => {
     const [smurf, setSmurf] = useState({ name: "", position: "", nickname: "", description:"" })
-
-
+   
     const handleChanges = event => {
         setSmurf({ ...smurf, [event.target.name]: event.target.value });
-        console.log("handleChanges function: ", event.target.name, event.target.value)
+       // console.log("handleChanges function: ", event.target.name, event.target.value)
+       
     };
 
+    
 
     const handleSubmit = event => {
         event.preventDefault();
-        props.addNewSmurf(smurf);
+        //console.log(smurf);
+        if (smurf.name === "" || smurf.nickname === "" || smurf.position === "" ) {
+            console.log("missing data") 
+             return alert("Must fill in all fields")
+        }else{
+            props.addNewSmurf(smurf);
         setSmurf({ name: "", nickname: "", position: "", description: "" })
-    };
+        }
+    
+        };
 
     return (
         <div>
@@ -27,6 +38,7 @@ const AddForm = props => {
                     onChange={handleChanges}
                     value={smurf.name}
                 />
+                
                 <input
                     type="text"
                     name="position"
@@ -34,6 +46,7 @@ const AddForm = props => {
                     onChange={handleChanges}
                     value={smurf.position}
                 />
+                
                 <input
                     type="text"
                     name="nickname"
@@ -41,6 +54,7 @@ const AddForm = props => {
                     onChange={handleChanges}
                     value={smurf.nickname}
                 />
+                
                 <input
                     type="text"
                     name="description"
@@ -48,6 +62,7 @@ const AddForm = props => {
                     onChange={handleChanges}
                     value={smurf.description}
                 />
+                
                 <button type="submit">Add Smurf</button>
             </form>
         </div>

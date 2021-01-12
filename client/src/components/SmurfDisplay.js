@@ -2,12 +2,13 @@ import React from 'react';
 
 
 const SmurfDisplay = props => {
+    console.log(props);
     return (
-        <div>
-            <h2>{props.info.name}</h2>
-            <p>{props.info.nickname}</p>
-            <p>{props.info.position}</p>
-            <p>{props.info.description}</p>
+        <div className="smurfs">
+            <h2>Name: {props.info.name}</h2>
+            <p>Nickname: {props.info.nickname}</p>
+            <p>Position: {props.info.position}</p>
+            <p>Description: {props.info.description}</p>
         </div>
     );
 };

@@ -6,7 +6,7 @@ import {
 } from '../actions'
 
 export const initialState = {
-    smurfs: [],
+    smurfData: [],
     isLoading:false,
     error: ""
 }
@@ -16,20 +16,20 @@ export const smurfsReducer = (state=initialState, action)=>{
         case FETCH_SMURF_DATA:
             return {
               ...state,
-              isLoading: true,
-              errors: ""
+              isLoading: false,
+              error: null
             };
           case ADD_SMURF_SUCCESS:
             return {
               ...state,
               isLoading: false,
-              smurfs: action.payload
+              smurfData: action.payload
             };
             case SMURF_DATA_FAILURE:
                 return {
                   ...state,
                   isLoading: false,
-                  errors: action.payload,
+                  error: action.err,
                 };
                
                     default: 
